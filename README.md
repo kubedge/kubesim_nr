@@ -1,4 +1,4 @@
-# kubeplay
+# kubesim_nr
 
 Kubernetes Playground
 
