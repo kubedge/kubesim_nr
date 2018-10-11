@@ -1,13 +1,13 @@
-# Default values for helloworld-chart.
+# Default values for kubedgesim-nr chart.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: jbrette/kubesim_nr
+  repository: hack4easy/kubesim_nr
   tag: 0.1.0
   pullPolicy: IfNotPresent
 service:
-  name: kubesim_nr
+  name: kubesim-nr
   type: NodePort
   externalPort: 8005
   internalPort: 8080
