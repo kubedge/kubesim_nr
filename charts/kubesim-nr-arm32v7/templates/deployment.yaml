@@ -30,9 +30,9 @@ spec:
               path: /
               port: {{ .Values.service.internalPort }}
           volumeMounts:
-            - name: kubesim-etc
+            - name: kubesim-nr-etc
               mountPath: /etc/kubedge/kubesim_conf.yaml
-              subPath: /kubesim_conf.yaml
+              subPath: kubesim_conf.yaml
               readOnly: true
           resources:
 {{ toYaml .Values.resources | indent 12 }}
@@ -40,9 +40,9 @@ spec:
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
       volumes:
-        - name: kubesim-etc
+        - name: kubesim-nr-etc
           configMap:
-            name: configmap-etc
+            name: kubesim-nr-etc
             items:
              - key: config
                path: kubesim_conf.yaml
