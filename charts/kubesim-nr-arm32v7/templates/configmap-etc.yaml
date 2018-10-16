@@ -5,8 +5,8 @@ metadata:
 data:
   config: |-
     ---
-    product_name: epc
-    product_type: 4g
+    product_name: nr
+    product_type: 5g
     product_family: ran
     product_release: test
     feature_set1:
