@@ -34,6 +34,8 @@ spec:
               mountPath: /etc/kubedge/kubesim_conf.yaml
               subPath: kubesim_conf.yaml
               readOnly: true
+            - name: kubedge 
+              mountPath: /etc/kubedge
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- if .Values.nodeSelector }}
@@ -46,4 +48,7 @@ spec:
             items:
              - key: config
                path: kubesim_conf.yaml
+        - name: kubedge
+          hostPath:
+            path: /etc/kubedge
     {{- end }}
