@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubesim-nr-etc
+data:
+  config: |-
+    ---
+    product_name: nr
+    product_type: 5g
+    product_family: ran
+    product_release: test
+    feature_set1:
+    - one
+    - two
+    feature_set2:
+    - alpha
+    - beta
