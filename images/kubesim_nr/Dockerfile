@@ -1,5 +1,5 @@
 FROM scratch
 ADD kubesim_nr/ca-certificates.crt /etc/ssl/certs/
-ADD kubesim_nr/goserv /goserv
+ADD kubesim_nr/goclient /goclient
 EXPOSE 8080
-CMD ["/goserv"]
+CMD ["/goclient", "network", "Bluetooth"]
