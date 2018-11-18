@@ -25,7 +25,7 @@ DHUBREPO         = ${DOCKER_NAMESPACE}/${IMAGE_NAME}
 all: simulator
 
 simulator: kubesim_nr/main.go
-	cd kubesim_nr && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o goclient-${CURRENT_BRANCH} .
+	cd kubesim_nr && CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -a -installsuffix cgo -o goclient-${CURRENT_BRANCH} .
 
 clean: kubesim_nr/goclient-${CURRENT_BRANCH}
 	cd kubesim_nr && rm -f goclient-${CURRENT_BRANCH}
