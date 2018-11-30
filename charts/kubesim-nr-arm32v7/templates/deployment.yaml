@@ -45,17 +45,19 @@ spec:
             httpGet:
               path: /readiness
               port: {{ .Values.service.healthPort }}
-        - name: arpscan
-          image: "{{ .Values.image.arpscanRepository }}:{{ .Values.image.arpscanTag }}"
+        - name: blinkt
+          image: "{{ .Values.image.blinktRepository }}:{{ .Values.image.blinkTag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["/bin/arpscan"]
-          args: ["{{ .Values.kubedge.ran_interface }}"]
-          ports:
-            - containerPort: {{ .Values.service.arpscanPort }}
           securityContext:
              privileged: true
              allowPrivilegeEscalation: true
+          ports:
+            - containerPort: {{ .Values.service.blinktPort }}
           volumeMounts:
+            - name: kubesim-nr-blink
+              mountPath: /etc/kubedge/blinkt_conf.yaml
+              subPath: blinkt_conf.yaml
+              readOnly: true
             - name: kubedge
               mountPath: /etc/kubedge
         - name: main
@@ -68,7 +70,7 @@ spec:
               mountPath: /etc/kubedge/kubesim_conf.yaml
               subPath: kubesim_conf.yaml
               readOnly: true
-            - name: kubedge
+            - name: kubedge 
               mountPath: /etc/kubedge
           resources:
 {{ toYaml .Values.resources | indent 12 }}
@@ -83,6 +85,12 @@ spec:
             items:
              - key: config
                path: kubesim_conf.yaml
+        - name: kubesim-nr-blinkt
+          configMap:
+            name: kubesim-nr-blinkt
+            items:
+             - key: config
+               path: blinkt_conf.yaml
         - name: kubedge
           hostPath:
             path: /etc/kubedge
