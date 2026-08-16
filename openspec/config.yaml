@@ -6,12 +6,12 @@ context: |
 
   Dependency (Notes 15-16):
     - Compile-time: consumes github.com/kubedge/kubesim_base (config+connected+grpc/go),
-      CURRENT pin v0.1.24 (current with the latest published kubesim_base; main reconciled from master) -> realign only when kubesim_base cuts a NEWER tag.
+      CURRENT pin v0.1.25 (realigned to the latest published kubesim_base) -> realign only when kubesim_base cuts a NEWER tag.
     - Runtime: built into image(s) and run on a cluster (arm64: Apple-Silicon + Pi armv8).
 
   Build / versioning:
-    - go currently 1.20 (reconciled from master). Tag scheme plain vX.Y.Z at image level (no k8s encoding).
-    - Makefile builds arch-suffixed image variants -> MODERNIZE to buildx multi-arch (arm64 primary).
+    - go currently 1.26 (folded up with the v0.1.25 realign). Tag scheme plain vX.Y.Z at image level (no k8s encoding).
+    - Image build is buildx multi-arch (arm64 primary) via `make docker-buildx` + build/Dockerfile.buildkit; the arch-suffixed Makefile variants are retired.
 
 rules:
   spec:
