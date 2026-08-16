@@ -1,0 +1,19 @@
+schema: spec-driven
+
+context: |
+  Role: CONSUMER in the kubedge SIMULATOR family. 5G NR (New Radio) simulator.
+  Plain Go app (LIGHT on Kubernetes).
+
+  Dependency (Notes 15-16):
+    - Compile-time: consumes github.com/kubedge/kubesim_base (config+connected+grpc/go),
+      CURRENT pin v0.1.25 (realigned to the latest published kubesim_base) -> realign only when kubesim_base cuts a NEWER tag.
+    - Runtime: built into image(s) and run on a cluster (arm64: Apple-Silicon + Pi armv8).
+
+  Build / versioning:
+    - go currently 1.26 (folded up with the v0.1.25 realign). Tag scheme plain vX.Y.Z at image level (no k8s encoding).
+    - Image build is buildx multi-arch (arm64 primary) via `make docker-buildx` + build/Dockerfile.buildkit; the arch-suffixed Makefile variants are retired.
+
+rules:
+  spec:
+    - Describe CURRENT behavior; do not spec aspirational features.
+    - Name the sim base / paired operator when behavior depends on them.
