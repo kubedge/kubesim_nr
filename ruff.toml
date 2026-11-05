@@ -1,0 +1,11 @@
+# This is a Go project: the only Python here is delivered by claude-meta
+# (class M) and runs under `uv run --script` on its own Python floor. Keep the
+# project's ruff off it; never edit the delivered files to satisfy a lint.
+# force-exclude makes the exclusion hold for the filenames pre-commit passes.
+force-exclude = true
+extend-exclude = [
+  ".agents/",
+  ".claude/",
+  "plugins/",
+  "bin/*.py",
+]
